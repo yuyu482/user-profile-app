@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import ProfileCard from "./ProfileCard";
+import './App.css'; // CSSファイルをインポート
 
-function App() {
+function App(){
+  const [users, setUsers] = useState([
+    { name: 'John Doe', email: 'johndoe@example.com', avatar: 'https://via.placeholder.com/150' },
+    { name: 'Jane Smith', email: 'janesmith@example.com', avatar: 'https://via.placeholder.com/150' },
+    { name: 'Mike Johnson', email: 'mikejohnson@example.com', avatar: 'https://via.placeholder.com/150' },
+  ])
+
+  const [newUser, setNewUser] = useState({name: '', email: '', avatar:''});
+
+  const addUser = () => {
+    setUsers([...users, newUser]);
+    setNewUser({name:'', email:'', avatar:''})
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>User Profiles</h1>
+      {users.map((user, index)=>(
+        <ProfileCard key={index} name={user.name} email={user.email} avatar={user.avatar} 
+        onDelete = {()=> {
+          setUsers(users.filter((_,i)=> i !== index));
+        }}
+        />
+      ))}
+
+      <div className="add-user">
+        <input
+          type="text"
+          placeholder="Name"
+          value={newUser.name}
+          onChange={(e)=>setNewUser({...newUser, name: e.target.value})}
+        />
+        <input
+          type="text"
+          placeholder="Email"
+          value={newUser.email}
+          onChange={(e)=>setNewUser({...newUser, email: e.target.value})}
+        />
+        <input
+          type="text"
+          placeholder="Avatar URL"
+          value={newUser.avatar}
+          onChange={(e)=>setNewUser({...newUser, avatar: e.target.value})}
+        />
+        <button onClick={addUser}>Add User</button>
+      </div>
+
+
     </div>
   );
 }

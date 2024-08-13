@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+.profile-card{
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.profile-card img {
+  border-radius: 50%;
+}
+
+.details {
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+.add-user {
+  margin-top: 20px;
+}
+
+.add-user input {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-user button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
